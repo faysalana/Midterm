@@ -69,14 +69,14 @@ def add_employee(d):
     print("Employee added successfully!")
 
 def display_all():
-    d = {}
+
     a=open("Employees.txt","r") #same ref https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ&index=30&ab_channel=Codezilla
     sorted_lines = sorted(a, key=lambda line: line.split(", ")[2], reverse=True) # https://stackoverflow.com/questions/56561266/sort-text-file-lines-using-python-by-timestamp
     for line in sorted_lines:
         print(line)
 
 def change_salary():
-    emp_id_to_update = input("Enter Employee's ID: ")
+    emp_id_update = input("Enter Employee's ID: ")
     new_salary = input("Enter the new salary: ")
 
     with open("Employees.txt", "r") as f:
@@ -85,13 +85,28 @@ def change_salary():
     with open("Employees.txt", "w") as f:
         for line in lines:
             emp_id, name, time, gender, salary = line.strip().split(", ")
-            if emp_id == emp_id_to_update:
+            if emp_id == emp_id_update:
                 f.write("{}, {}, {}, {}, {}\n".format(emp_id, name, time, gender, new_salary))
             else:
                 f.write(line)
 
     print("Salary updated successfully!")
 
+def remove(): #here I just coppied the one with edit and removed the writing
+    emp_id_r = input("Enter Employee's ID You Wish To Remove: ")
+
+    with open("Employees.txt", "r") as f:
+        lines = f.readlines()
+
+    with open("Employees.txt", "w") as f:
+        for line in lines:
+            emp_id, name, time, gender, salary = line.strip().split(", ")
+            if emp_id != emp_id_r:
+                f.write(line)
+    del[emp_id_r] #I've got the delete from here https://www.w3schools.com/python/python_dictionaries_remove.asp
+
+
+    print("Salary updated successfully!")
 
 def admin_menu(d):
     print("welcome admin")
@@ -115,7 +130,8 @@ def admin_menu(d):
             change_salary()
 
         elif x == '5':
-            pass
+            remove()
+
         elif x == '6':
             pass
         elif x == '7':
