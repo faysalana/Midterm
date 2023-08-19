@@ -52,7 +52,14 @@ def a_menu():
     pass
 def admin_menu():
     print("welcome admin")
-    
+    while True:
+        a_menu()
+        x = input("Choose a number: ")
+        if x=='1':
+            #display
+        elif x=='2':
+
+        elif
 
 
 
