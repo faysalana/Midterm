@@ -47,6 +47,10 @@ def a_menu():
     print("6. Raise Employee's Salary")
     print("7. Exit")
     pass
+def u_menu():
+    print("1. Check My Salary")
+    print("2. Exit")
+    pass
 
 
 def add_employee(d):
@@ -176,7 +180,26 @@ def user_menu(username,d):
         print("Welcome Mr. "+username)
     else:
         print("Welcome Ms. "+username)
-    pass
+    while True:
+        u_menu()
+        x = input("Choose a number: ")
+        if x == '1':
+            a = d[username]['Salary']
+            print("My Salary is: ", a)
+        elif x == '2':
+            new_time = datetime.datetime.now().strftime('%Y%m%d')
+            with open("Employees.txt", "r") as f:
+                lines = f.readlines()
+            with open("Employees.txt", "w") as f:
+                for line in lines:
+                    emp_id, name, time, gender, salary = line.strip().split(", ")
+                    if name == username:
+                        f.write("{}, {}, {}, {}, {}\n".format(emp_id, name, new_time, gender, salary))
+                    else:
+                        f.write(line)
+            break
+        else:
+            print("Wrong input")
 
 
 
