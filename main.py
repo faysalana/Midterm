@@ -7,13 +7,13 @@ def file(): # I've learned dealing with file from here    https://www.youtube.co
     with open("Employees.txt") as f: # Converting to dictionary from here   https://stackoverflow.com/questions/4803999/how-to-convert-a-file-into-a-dictionary
         for line in f:
             (emp_id, name, dob, gender, salary) = line.strip().split(", ")
-            d[emp_id] = {
-                'Name': name,
+            d[name] = {
+                'emo_id': emp_id,
                 'Date of Birth': dob,
                 'Gender': gender,
                 'Salary': int(salary)
             }
-    print(d)
+    # print(d)  it was just for reference
     return login(d)
 def login(d):
 
@@ -32,7 +32,7 @@ def login(d):
             admin_menu()
             break
 
-        elif username in d.values() and password == "" :
+        elif username in d and password == "" :
             user_menu (username,d)
             break
 
@@ -49,11 +49,11 @@ def admin_menu():
 
 def user_menu(username,d):
 
-    # gender = d[][2]
-    # if gender == "male":
-    #     print("Welcome Mr. "+username)
-    # else:
-    #     print("Welcome Ms. "+username)
+    gender = d[username]['Gender']
+    if gender == "male":
+        print("Welcome Mr. "+username)
+    else:
+        print("Welcome Ms. "+username)
     pass
 
 
