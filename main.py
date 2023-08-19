@@ -15,6 +15,19 @@ def file(): # I've learned dealing with file from here    https://www.youtube.co
             }
     # print(d)  it was just for reference
     return login(d)
+def display_all():
+    d = {}
+    with open("Employees.txt") as f:
+        for line in f:
+            (emp_id, name, dob, gender, salary) = line.strip().split(", ")
+            d[name] = {
+                'emo_id': emp_id,
+                'Date of Birth': dob,
+                'Gender': gender,
+                'Salary': int(salary)
+            }
+    # print(d)  it was just for reference
+    return print(d)
 def login(d):
 
     ua = "admin"
@@ -67,7 +80,6 @@ def add_employee(d):
     }
 
     with open("Employees.txt", "a") as f:
-        # f.write(f"\n{emp_id}, {username}, {timestamp}, {gender}, {salary}\n")
         f.write('{}, {}, {}, {}, {}\n'.format(emp_id, username, timestamp, gender,salary))   #https://stackoverflow.com/questions/6931183/how-to-write-multiple-values-into-one-line-in-a-text-file
 
     print("Employee added successfully!")
@@ -87,7 +99,8 @@ def admin_menu(d):
             add_employee(d)
 
         elif x == '3':
-            pass
+            display_all()
+
         elif x == '4':
             pass
         elif x == '5':
