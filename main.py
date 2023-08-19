@@ -135,7 +135,7 @@ def admin_menu(d):
         elif x == '6':
             pass
         elif x == '7':
-            pass
+            break
         else:
             print("Wrong input")
 
