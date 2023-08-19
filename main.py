@@ -41,9 +41,18 @@ def login(d):
             print('Access denied. Try again. You still got ',(5-count),'times to try and the system will close')
 
 
-
+def a_menu():
+    print("1. Display Statistics")
+    print("2. Add an Employee")
+    print("3. Display All Employees")
+    print("4. Change Employee Salary")
+    print("5. Remove Employee")
+    print("6. Raise Employee's Salary")
+    print("7. Exit")
+    pass
 def admin_menu():
     print("welcome admin")
+    
 
 
 
