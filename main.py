@@ -1,6 +1,10 @@
 import datetime
 
 
+# I sent manuella the email of submitting and hour or two ago, and now I remembered that we have to put the big(O)
+
+
+# O(1) because it is fixed number of prints
 def a_menu():
     print("1. Display Statistics")
     print("2. Add an Employee")
@@ -11,11 +15,13 @@ def a_menu():
     print("7. Exit")
 
 
+# O(1) because it is fixed number of prints
 def u_menu():
     print("1. Check My Salary")
     print("2. Exit")
 
 
+# O(n) because it is the worst case depending on n; n being the number of data in file
 def file():  # I've learned dealing with file from here
     # https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ&index=30&ab_channel=Codezilla
     d = {}
@@ -34,6 +40,7 @@ def file():  # I've learned dealing with file from here
     return login(d)
 
 
+# O(1) because it is fixed number of 5 times trying
 def login(d):
     count = 0  # The max it can get is 4
     print("Welcome to the system !")
@@ -55,6 +62,7 @@ def login(d):
             print('Access denied. Try again. You still got ', (5 - count), 'times to try and the system will close')
 
 
+# O(1) because we are adding only one employee at a time
 def add_employee(d):
     emp_id = "emp" + str(len(d) + 1)  # I didn't know how to make emp00, so I used this
     username = input("Enter username: ")
@@ -79,6 +87,7 @@ def add_employee(d):
     print("Employee added successfully!")
 
 
+# O(n) because we don't know how many employees we have and n is number of employees (worst case n)
 def display_all():
     a = open("Employees.txt",
              "r")  # same ref https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ
@@ -90,6 +99,7 @@ def display_all():
         print(line)
 
 
+# O(1) because we are changing only one value for one employee
 def change_salary():
     emp_id_update = input("Enter Employee's ID: ")
     new_salary = input("Enter the new salary: ")
@@ -111,6 +121,7 @@ def change_salary():
     print("Salary updated successfully!")
 
 
+# O(1) because we are removing only one employee
 def remove():  # here I just copied the one with edit and removed the writing
     emp_id_r = input("Enter Employee's ID You Wish To Remove: ")
 
@@ -129,6 +140,7 @@ def remove():  # here I just copied the one with edit and removed the writing
                 print("Employee Removed Successfully!")
 
 
+# O(1) because we are raising one value for one employee
 def raise_salary():
     d = {}
     with open(
@@ -167,6 +179,8 @@ def raise_salary():
         print("Employee not found.")
 
 
+# O(n) although it is a fixed number of 7 choices but after each choice it will repeat until user press exit,
+# so I believe it must be O(n) referring to how many times admin uses the system at the time (while true)
 def admin_menu(d):
     print("welcome admin")
 
@@ -201,6 +215,7 @@ def admin_menu(d):
             print("Wrong input")
 
 
+# same as admin_menu O(n)
 def user_menu(username, d):
     gender = d[username]['Gender']  # here the dictionary have the username as the key in order to get as male or female
     if gender == "male":
