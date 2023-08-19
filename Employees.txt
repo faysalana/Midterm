@@ -1,2 +1,2 @@
-emp001, cdaoud, 20220802, male, 14400
-emp002, manuella, 20230819, female, 1500
+emp001, cdaoud, 20220802, male, 12000
+emp002, manuella, 20220803, female, 1200
