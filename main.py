@@ -6,31 +6,22 @@ def file(): # I've learned dealing with file from here    https://www.youtube.co
     d = {}
     with open("Employees.txt") as f: # Converting to dictionary from here   https://stackoverflow.com/questions/4803999/how-to-convert-a-file-into-a-dictionary
         for line in f:
-            (emp_id, name, dob, gender, salary) = line.strip().split(", ")
+            (emp_id, name, time, gender, salary) = line.strip().split(", ")
             d[name] = {
                 'emp_id': emp_id,
-                'Date of Birth': dob,
+                'Time': time,
                 'Gender': gender,
                 'Salary': int(salary)
             }
     # print(d)  it was just for reference
     return login(d)
-def display_all():
-    d = {}
-    a=open("Employees.txt","r") #same ref https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ&index=30&ab_channel=Codezilla
-    sorted_lines = sorted(a, key=lambda line: line.split(", ")[2], reverse=True) # https://stackoverflow.com/questions/56561266/sort-text-file-lines-using-python-by-timestamp
-    for line in sorted_lines:
-        print(line)
+
 def login(d):
 
-    ua = "admin"
-    up = "admin123123"
     count = 0
     print("Welcome to the system !")
-    username = ""
-    password = ""
 
-    while password != 'admin123123' and username != 'admin' and count < 5:
+    while count < 5:
         username = input('Enter username: ')
         password = input('Enter password: ')
 
@@ -63,11 +54,11 @@ def add_employee(d):
     username = input("Enter username: ")
     gender = input("Enter gender (male/female): ")
     salary = int(input("Enter salary: "))
-    timestamp = datetime.datetime.now().strftime('%Y%m%d')  # I know this from a Female Automated Voice Assistant that I made before
+    timestamp = datetime.datetime.now().strftime('%Y%m%d')  # I know this from a Female Automated Voice Assistant that I've made before
 
     d[username] = {
         'emp_id': emp_id,
-        'Date of Birth': timestamp,  # You can update this with actual DOB input if needed
+        'Time': timestamp,  # You can update this with actual DOB input if needed
         'Gender': gender,
         'Salary': salary
     }
@@ -76,6 +67,32 @@ def add_employee(d):
         f.write('{}, {}, {}, {}, {}\n'.format(emp_id, username, timestamp, gender,salary))   #https://stackoverflow.com/questions/6931183/how-to-write-multiple-values-into-one-line-in-a-text-file
 
     print("Employee added successfully!")
+
+def display_all():
+    d = {}
+    a=open("Employees.txt","r") #same ref https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ&index=30&ab_channel=Codezilla
+    sorted_lines = sorted(a, key=lambda line: line.split(", ")[2], reverse=True) # https://stackoverflow.com/questions/56561266/sort-text-file-lines-using-python-by-timestamp
+    for line in sorted_lines:
+        print(line)
+
+def change_salary():
+    emp_id_to_update = input("Enter Employee's ID: ")
+    new_salary = input("Enter the new salary: ")
+
+    with open("Employees.txt", "r") as f:
+        lines = f.readlines()
+
+    with open("Employees.txt", "w") as f:
+        for line in lines:
+            emp_id, name, time, gender, salary = line.strip().split(", ")
+            if emp_id == emp_id_to_update:
+                f.write("{}, {}, {}, {}, {}\n".format(emp_id, name, time, gender, new_salary))
+            else:
+                f.write(line)
+
+    print("Salary updated successfully!")
+
+
 def admin_menu(d):
     print("welcome admin")
 
@@ -95,7 +112,8 @@ def admin_menu(d):
             display_all()
 
         elif x == '4':
-            pass
+            change_salary()
+
         elif x == '5':
             pass
         elif x == '6':
