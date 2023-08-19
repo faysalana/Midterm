@@ -65,7 +65,8 @@ def add_employee(d):
 
     d[username] = {  # I found an example on how to fill nested dictionaries and changed the keys and values
         'emp_id': emp_id,
-        'Time': timestamp,
+        'Time': timestamp,  # since we don't need to input it manually I removed the previous comment about that we
+        # can add it manually
         'Gender': gender,
         'Salary': salary
     }
