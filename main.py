@@ -8,7 +8,7 @@ def file(): # I've learned dealing with file from here    https://www.youtube.co
         for line in f:
             (emp_id, name, dob, gender, salary) = line.strip().split(", ")
             d[name] = {
-                'emo_id': emp_id,
+                'emp_id': emp_id,
                 'Date of Birth': dob,
                 'Gender': gender,
                 'Salary': int(salary)
@@ -17,17 +17,10 @@ def file(): # I've learned dealing with file from here    https://www.youtube.co
     return login(d)
 def display_all():
     d = {}
-    with open("Employees.txt") as f:
-        for line in f:
-            (emp_id, name, dob, gender, salary) = line.strip().split(", ")
-            d[name] = {
-                'emo_id': emp_id,
-                'Date of Birth': dob,
-                'Gender': gender,
-                'Salary': int(salary)
-            }
-    # print(d)  it was just for reference
-    return print(d)
+    a=open("Employees.txt","r") #same ref https://www.youtube.com/watch?v=ZCmdm-RuRFA&list=PLuXY3ddo_8nzrO74UeZQVZOb5-wIS6krJ&index=30&ab_channel=Codezilla
+    sorted_lines = sorted(a, key=lambda line: line.split(", ")[2], reverse=True) # https://stackoverflow.com/questions/56561266/sort-text-file-lines-using-python-by-timestamp
+    for line in sorted_lines:
+        print(line)
 def login(d):
 
     ua = "admin"
