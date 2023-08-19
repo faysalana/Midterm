@@ -106,7 +106,34 @@ def remove(): #here I just coppied the one with edit and removed the writing
     del[emp_id_r] #I've got the delete from here https://www.w3schools.com/python/python_dictionaries_remove.asp
 
 
-    print("Salary updated successfully!")
+    print("Employee Removed Successfully!")
+
+def raise_salary():
+    d = {}
+    with open(
+            "Employees.txt") as f:  # Converting to dictionary from here   https://stackoverflow.com/questions/4803999/how-to-convert-a-file-into-a-dictionary
+        for line in f:
+            (emp_id, name, time, gender, salary) = line.strip().split(", ")
+            d[emp_id] = {
+                'Name': name,
+                'Time': time,
+                'Gender': gender,
+                'Salary': int(salary)
+            }
+    emp_id = input("Enter Employee's ID: ")
+
+    if emp_id in d:
+        percentage = float(input("Enter the raise percentage (e.g., 10 for 10%): "))
+        current_salary = d[emp_id]['Salary']
+        new_salary = int(current_salary * (1 + percentage / 100))
+        d[emp_id]['Salary'] = new_salary
+        print("Salary raised successfully!")
+        with open("Employees.txt", "w") as f:
+            for emp_id, emp_data in d.items():
+                line = "{}, {}, {}, {}, {}\n".format(emp_id, emp_data['Name'], emp_data['Time'], emp_data['Gender'],emp_data['Salary'])
+                f.write(line)
+    else:
+        print("Employee not found.")
 
 def admin_menu(d):
     print("welcome admin")
@@ -133,9 +160,9 @@ def admin_menu(d):
             remove()
 
         elif x == '6':
-            pass
+            raise_salary()
         elif x == '7':
-            break
+            break  #the saving is already done in other function each time
         else:
             print("Wrong input")
 
