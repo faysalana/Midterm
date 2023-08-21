@@ -158,23 +158,24 @@ def raise_salary():
     emp_id = input("Enter Employee's ID: ")
 
     if emp_id in d:
-        percentage = float(input(
-            "Enter the raise percentage (e.g., 10 for 10%): "))  # I thought maybe the admin wanted to raise a float
-        # percentage
-        current_salary = d[emp_id]['Salary']
-        new_salary = int(current_salary * (1 + percentage / 100))
-        d[emp_id]['Salary'] = new_salary
-        print("Salary raised successfully!")
-        with open("Employees.txt", "w") as f:
-            for emp_id, emp_data in d.items():
-                # f.write("{}, {}, {}, {}, {}\n".format(emp_id, name, time, gender, new_salary))# I used this didn't
-                # work
-                line = "{}, {}, {}, {}, {}\n".format(emp_id, emp_data['Name'], emp_data['Time'], emp_data['Gender'],
-                                                     emp_data[
-                                                         'Salary'])  # that is why I used this using this link (i
-                # had to manipulate it due to many data)
-                # https://stackoverflow.com/questions/48345630/writing-a-nested-dictionary-to-a-txt-file
-                f.write(line)
+        percentage = (input("Enter the raise percentage (e.g., 10 for 10%): "))  # It made an error when the
+        # user inputs something else than float, so I changed it to normal then check it down
+        if percentage.isdigit():  # is digit I learned it from previous assignment
+            current_salary = d[emp_id]['Salary']
+            new_salary = int(current_salary * (1 + int(percentage) / 100))
+            d[emp_id]['Salary'] = new_salary
+            print("Salary raised successfully!")
+            with open("Employees.txt", "w") as f:
+                for emp_id, emp_data in d.items():
+                    # f.write("{}, {}, {}, {}, {}\n".format(emp_id, name, time, gender, new_salary))# I used this
+                    # didn't work
+                    line = "{}, {}, {}, {}, {}\n".format(emp_id, emp_data['Name'], emp_data['Time'],emp_data['Gender'],emp_data['Salary'])
+                    # that is why I used this using this
+                    # link (I had to manipulate it due to many data) https://stackoverflow.com/questions/48345630/writing-a-nested-dictionary-to-a-txt-file
+                    f.write(line)
+        else:
+            print("wrong input")
+
     else:
         print("Employee not found.")
 
