@@ -1,7 +1,7 @@
 import datetime
 
 
-# I sent manuella the email of submitting and hour or two ago, and now I remembered that we have to put the big(O)
+# I sent manuella the email of submitting and hour or two ago, and now I remembered that we have to put the big(O) (this was on saturday)
 
 
 # O(1) because it is fixed number of prints
